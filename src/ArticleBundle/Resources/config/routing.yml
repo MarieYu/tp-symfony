@@ -1,0 +1,48 @@
+article_homepage:
+    path:     /
+    defaults: { _controller: ArticleBundle:Default:index }
+
+article_detail:
+    path:     /detail/{slug}-{id}
+    defaults: { _controller: ArticleBundle:Default:detail }
+    requirements:
+        id: \d+
+        slug: "[a-zA-Z0-9-]+"
+
+article_add:
+    path:     /ajouter
+    defaults: { _controller: ArticleBundle:Default:add }
+
+article_list:
+    path:     /list-articles
+    defaults: { _controller: ArticleBundle:Default:list }
+
+article_delete:
+    path:     /delete/{id}
+    defaults: { _controller: ArticleBundle:Default:delete }
+    requirements:
+        id: \d+
+
+article_update:
+    path:     /update-article/{id}
+    defaults: { _controller: ArticleBundle:Default:update }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+article_update_post:
+    path:     /update-article-post/{id}
+    defaults: { _controller: ArticleBundle:Default:updatePost }
+    methods: [POST]
+    requirements:
+        id: \d+
+
+article_addImage:
+    path:     /article/{id}/add-image
+    defaults: { _controller: ArticleBundle:Default:addImage }
+    requirements:
+        id: \d+
+
+test_hello:
+    path: /test/hello
+    defaults: {_controller: ArticleBundle:Test:hello}

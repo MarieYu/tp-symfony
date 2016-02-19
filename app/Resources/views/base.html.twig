@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" style="background-color:lightgrey">
+            <h3>Menu général</h3>
+            <div class="list-group">
+                <a href="{{ path("homepage") }}" class="list-group-item">Accueil</a>
+                <a href="{{ path("article_homepage") }}" class="list-group-item">Bundle Article</a>
+                {% if app.user %}
+                    <a href="{{ path("logout") }}" class="list-group-item">Se déconnecter</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-9" style="background-color: mediumpurple">
+            {% block flash %}
+                <div class="message-flash">
+                    <div class="alert alert-info">
+                        {% for msg in app.session.flashbag.get('ajoutArticle') %}
+                            <p> {{ msg }} </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endblock %}
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

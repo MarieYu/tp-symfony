@@ -1,0 +1,55 @@
+{#{% extends 'ArticleBundle::layout.html.twig' %}#}
+
+{#{% block body %}#}
+    {#{{ parent() }}#}
+
+    {#<h1>Ajouter un article</h1>#}
+
+        {# génère un formulaire en ne faisant que des div et label : #}
+   {#{{ form(formulaire) }}#}
+
+    {# pour créer un input avec son lable mais dans une div: #}
+   {#{{ form_start(formulaire) }}#}
+
+    {#<div class="label">#}
+        {#{{ form_label(formulaire.title, "Titre") }}#}
+    {#</div>#}
+    {#{{ form_widget(formulaire.title) }}#}
+    {#{{ form_errors(formulaire.title) }}#}
+    {#<div>#}
+
+    {#</div>#}
+    {#{{ form_end(formulaire) }}#}
+
+
+{#{% endblock %}#}
+
+{% extends "ArticleBundle::layout.html.twig" %}
+{# ajouter dans config.yml un form resources pour faire le bootstrap#}
+{% form_theme formulaire 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+    <h1>Ajout d'un article</h1>
+
+
+    {#{{ form(formulaire) }}#}
+
+    {{ form_start(formulaire, { "attr" : { "novalidate" : "novalidate"} }) }}
+
+    {{ form_row(formulaire.title) }}
+
+    {#<div class="label">#}
+    {#{{ form_label(formulaire.title, "Titre") }}#}
+    {#</div>#}
+    {#{{ form_widget(formulaire.title, { "attr" : { "class" : "form-control"} }) }}#}
+    {#{{ form_errors(formulaire.title) }}#}
+
+
+    {#{{ form_widget(formulaire.url, { "attr" : { "class" : "form-control"} }) }}#}
+
+    {#<div class="image-form">#}
+    {#{{ form(formulaire.image) }}#}
+    {#</div>#}
+
+    {{ form_end(formulaire) }}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "ArticleBundle::layout.html.twig" %}
+
+{% block title %}Liste articles{% endblock %}
+
+
+{% block body %}
+    {{ parent() }}
+    <h2>La liste des articles [{{ articles|length }}]</h2>
+
+{#{% include('ArticleBundle:Default:add.html.twig') %}#}
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th>Titre</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Date de rédaction</th>
+                <th>Date de mise à jour</th>
+                <th>Auteur</th>
+                <th>Contenu</th>
+                <th>Nombre de commentaires</th>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    {#{% if {{ article.image.url }} !== null %}#}
+                        {#<td>{{ article.image.url }}</td>#}
+                        {#{% endif %}#}
+                    <td>{{ article.description }}</td>
+                    <td>{{ article.createdAt|date("d-m-Y h:i:s A") }}</td>
+                    <td>{{ article.updatedAt|date("d-m-Y h:i:s A") }}</td>
+                    <td>{{ article.createdBy }}</td>
+                    <td>{{ article.content }}</td>
+                    <td>{{ article.comments|length }}</td>
+                    <td><a href="{{ path ("article_detail", {"slug":article.title|replace(" ", "-"), "id": article.id}) }}">Voir l'article</a></td>
+                    <td><a href="{{ path ("article_delete",{"id": article.id} ) }}">Supprimer</a></td>
+                    <td><a href="{{ path ("article_update", {"id": article.id}) }}">Modifier</a></td>
+                    <td><a href="{{ path ("article_addImage", {"id": article.id}) }}">Ajouter une image</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}

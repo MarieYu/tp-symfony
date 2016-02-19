@@ -1,0 +1,4 @@
+services:
+    article.local_file:
+        class: ArticleBundle\Service\LocalFile
+        arguments: ["@kernel", "data/"]

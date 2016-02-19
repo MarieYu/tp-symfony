@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{{ path("article_list") }}"><i class="fa fa-list"></i> Liste des articles</a>
+                </li>
+                <li>
+                    <a href="{{  path("article_add") }}"><i class="fa fa-plus"></i> Ajouter un article</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{%  extends "ArticleBundle::layout.html.twig" %}
+
+
+
+{%  block body %}
+    <h3>Page d'accueil de nos articles</h3>
+
+    {# affichage tableau de données à envoyer à la vue #}
+        {# le contrôleur renvoit la variable items à la vue, qu'on peut utiliser ici #}
+    <h4>Liste des items</h4>
+    <ul>
+        {%  for item in items %}
+            <li>{{ item }}</li>
+        {%  endfor %}
+    </ul>
+
+
+    <h4>Utilisation des filtres</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Nom variables</th>
+                <th>Nom filtres</th>
+                <th>Valeur initiale</th>
+                <th>Valeur filtrée</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>valeurNeg</td>
+            <td>abs</td>
+            <td>{{ valeurNeg }}</td>
+            <td>{{ valeurNeg|abs }}</td> {# utilisation du fitre abs pour valeur absolue #}
+        </tr>
+        <tr>
+            <td>dateDuJour</td>
+            <td>date</td>
+            <td>{{ dump(dateDuJour) }}</td>
+            <td>{{ dateDuJour|date("d-m-Y") }}</td> {# utilisation du fitre date choisir un format #}
+        </tr>
+        <tr>
+            <td>contenuHtml</td>
+            <td>escape</td>
+            <td>{{ contenuHtml }}</td>
+            <td>{{ contenuHtml|escape }}</td> {# utilisation du fitre date choisir un format #}
+        </tr>
+        </tbody>
+    </table>
+
+
+    <h4>Liste des catégories</h4>
+    {#{% set categories = [] %}#}
+
+
+    {% if categories|length <1 %}
+        <p>Aucune catégorie disponible !</p>
+    {%  else  %}
+        <table class="table table-bordered table-striped">
+            <tbody>
+                {%  for categorie in categories %}
+                    <tr>
+                        <td>{{ categorie.name }}</td>
+                        <td>{{ categorie.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}
